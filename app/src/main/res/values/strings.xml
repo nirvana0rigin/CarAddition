@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">CarAddition</string>
+    <string name="q_come_1st">みぎとひだり</string>
+    <string name="q_come_2nd">←　→</string>
+    <string name="q_come_3rd">どっちかな</string>
+    <string name="start1st">たしざん　ふつう　スタート</string>
+    <string name="start2nd">たしざん　あなあき スタート</string>
+    <string name="start3rd">ひきざん　ふつう　スタート</string>
+    <string name="start4th">ひきざん　あなあき　スタート</string>
+    <string name="start5th">せってい　いろいろ・・(工事中)</string>
+    <string name="start_toast">まだ、できてないんだ</string>
+    <string name="onec_more">もういっかい</string>
+    <string name="nokori">のこり</string>
+    <string name="m">メートル</string>
+    <string name="end">のこり0メートル!! どっちが かった？</string>
+    <string name="mon">もんちゅう</string>
+    <string name="close">おわりにする</string>
+    <string name="back">もどる</string>
+    <string name="hard">むずい</string>
+    <string name="normal">ふつう</string>
+    <string name="easy">よゆう</string>
+    <string name="wait">ちょっと、まってね</string>
+    <string name="ten">てん</string>
+    <string name="you">きみ</string>
+    <string name="him">ライバル</string>
+
+</resources>

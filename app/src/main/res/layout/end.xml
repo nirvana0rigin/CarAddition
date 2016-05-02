@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+    <!-- 終了のお知らせ表題 -->
+    <TextView
+        style="@style/t_color"
+        android:id="@+id/time_end1"
+        android:text="@string/end"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="18sp" />
+
+    <!-- テストの結果 -->
+    <TextView
+        style="@style/t_color"
+        android:id="@+id/result_text1"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="24sp" />
+
+    <!-- 勝負の結果 -->
+    <TextView
+        style="@style/t_color"
+        android:id="@+id/result_text2"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="32sp" />
+
+    <!-- 勝負の結果画像 -->
+    <ImageView
+        android:id="@+id/result_image"
+        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <!-- 終了後の選択メニュー -->
+    <Button
+        android:layout_margin="2dp"
+        style="@style/b_color"
+        android:gravity="center"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:id="@+id/end_to_home"
+        android:text="@string/back"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_margin="2dp"
+        style="@style/b_color"
+        android:gravity="center"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:id="@+id/close2"
+        android:text="@string/close"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 全体・縦に並べる -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--道路と車 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+        <!--道路-->
+        <ImageView
+            android:src="@drawable/road4"
+            android:scaleType="fitXY"
+            android:layout_width="960dp"
+            android:layout_height="160dp" />
+        <!--自分と相手の車の画像 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <ImageView
+                android:src="@drawable/lan1"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp" />
+
+            <ImageView
+                android:src="@drawable/car2"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp" />
+        </LinearLayout>
+        <!--自分と相手の車のラベル -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <TextView
+                android:textColor="#FF0000"
+                android:gravity="top"
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:textSize="12sp"
+                android:text="@string/you" />
+
+            <TextView
+                android:textColor="#FFaaaa"
+                android:gravity="bottom"
+                android:paddingBottom="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:textSize="12sp"
+                android:text="@string/him" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!--問題モード選択ボタン -->
+    <LinearLayout
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/start_add"
+            android:text="@string/start1st" />
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/start_add2"
+            android:text="@string/start2nd" />
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/start_min"
+            android:text="@string/start3rd" />
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/start_min2"
+            android:text="@string/start4th" />
+        <!--難易度モード選択ボタン -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                style="@style/b_color"
+                android:layout_margin="2dp"
+                android:id="@+id/hard"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:text="@string/hard" />
+
+            <Button
+                style="@style/b_color"
+                android:layout_margin="2dp"
+                android:id="@+id/normal"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:text="@string/normal" />
+
+            <Button
+                style="@style/b_color"
+                android:layout_margin="2dp"
+                android:id="@+id/easy"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:text="@string/easy" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--設定等の選択ボタン -->
+    <LinearLayout
+        android:id="@+id/conf"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/start_conf"
+            android:text="@string/start5th" />
+
+        <Button
+            style="@style/b_size"
+            android:id="@+id/close"
+            android:text="@string/close" />
+    </LinearLayout>
+
+</LinearLayout>

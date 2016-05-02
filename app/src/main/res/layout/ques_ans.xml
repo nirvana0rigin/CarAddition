@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 道路と車 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+        <!-- 道路 -->
+        <ImageView
+            android:id="@+id/load"
+            android:src="@drawable/road60"
+            android:scaleType="fitXY"
+            android:layout_width="14400dp"
+            android:layout_height="match_parent" />
+        <!-- 自分と相手の車 -->
+        <LinearLayout
+            android:id="@+id/cars"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/you"
+                android:layout_margin="5dp"
+                android:src="@drawable/lan1"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp" />
+
+            <ImageView
+                android:id="@+id/him"
+                android:layout_margin="5dp"
+                android:src="@drawable/car2"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp" />
+        </LinearLayout>
+        <!--自分と相手の車のラベル -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <TextView
+                android:textColor="#FF0000"
+                android:gravity="top"
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:textSize="12sp"
+                android:text="@string/you" />
+
+            <TextView
+                android:textColor="#FFaaaa"
+                android:gravity="bottom"
+                android:paddingBottom="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:textSize="12sp"
+                android:text="@string/him" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- 問題と選択肢 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/play"
+        android:gravity="center"
+        android:orientation="vertical">
+        <!-- 制限時間(残りの距離) -->
+        <TextView
+            style="@style/t_color"
+            android:id="@+id/time"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:textSize="36sp" />
+        <!-- 問題 -->
+        <TextView
+            style="@style/t_color"
+            android:id="@+id/q"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:textSize="70sp" />
+        <!-- 選択肢 -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <Button
+                style="@style/t_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ans_l"
+                android:textSize="50sp"
+                android:background="@drawable/ans_button" />
+
+            <ImageView
+                android:id="@+id/ans_image"
+                android:layout_width="140dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                style="@style/t_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ans_r"
+                android:textSize="50sp"
+                android:background="@drawable/ans_button" />
+        </LinearLayout>
+
+        <!-- 終了ボタン -->
+        <Button
+            style="@style/b_color"
+            android:layout_marginTop="20dp"
+            android:id="@+id/play_to_home"
+            android:text="@string/back"
+            android:textSize="14sp"
+            android:layout_width="120dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
