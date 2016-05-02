@@ -1,0 +1,303 @@
+package jp.co.nirvana0rigin.caraddition;
+
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Random;
+
+/**
+ * Created by user on 2016/04/18.
+ */
+public class QuesAns extends SoundActivity implements View.OnClickListener {
+
+    Context con;
+    Intent goHome;
+
+    int countQ = 0;
+
+    ImageView road;
+    LinearLayout quesAns;
+    TextView q;
+    Button btnL;
+    Button btnR;
+    Button btnBack;
+    float maru = 0;
+    float batsu = 0;
+    static int id = 0;
+
+    ImageView atariHazure;
+    Bitmap atari = null;
+    Bitmap hazure = null;
+    Bitmap docchi = null;
+    Resources res;
+
+    ImageView you;
+    ObjectAnimator youAnim;
+    ImageView him;
+    ObjectAnimator himAnim;
+
+    TextView time;
+    CountDownTimer cdt;
+    HashMap sounds;
+    GenerateQA qa;
+
+    // 難易度は以下をいじる
+    //「早く」「幾つ」正解かが勝負
+    long timeAll = 30000;
+    long timeInter = 1000;
+    static int difficult = 4;
+    static float speed = 24;
+    static float youX = 0;
+    static float youXX = speed;
+    static float himX = 0;
+    static float himXX = speed;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ques_ans);
+        res = getResources();
+        con = getApplicationContext();
+        goHome = new Intent(this, MainActivity.class);
+
+        road = (ImageView) findViewById(R.id.load);
+        Animation roadPlaying = AnimationUtils.loadAnimation(this, R.anim.road_anim);
+        road.startAnimation(roadPlaying);
+
+        quesAns = (LinearLayout) findViewById(R.id.play);
+        time = (TextView) findViewById(R.id.time);
+        q = (TextView) findViewById(R.id.q);
+        btnL = (Button) findViewById(R.id.ans_l);
+        btnL.setOnClickListener(this);
+        btnR = (Button) findViewById(R.id.ans_r);
+        btnR.setOnClickListener(this);
+        btnBack = (Button) findViewById(R.id.play_to_home);
+        btnBack.setOnClickListener(this);
+
+        atariHazure = (ImageView) findViewById(R.id.ans_image);
+        setMyImage(null, atariHazure, R.drawable.docchi);
+        atari = BitmapFactory.decodeResource(res, R.drawable.atari);
+        hazure = BitmapFactory.decodeResource(res, R.drawable.hazure);
+
+        youX = 0;
+        himX = 0;
+        you = (ImageView) findViewById(R.id.you);
+        him = (ImageView) findViewById(R.id.him);
+        yourCar(youX);
+        hisCar(himX);
+
+        sounds = new HashMap() {{
+            put("roop", Integer.valueOf(R.raw.roop));
+            put("pinpon", Integer.valueOf(R.raw.pinpon));
+            put("bubuu", Integer.valueOf(R.raw.bubuu));
+            put("goal", Integer.valueOf(R.raw.goal));
+        }};
+        setSMap(sounds);
+        sMapStartRoop("roop");
+
+        Integer dif = (Integer) getP1();
+        if (dif != null) {
+            difficult = dif.intValue();
+        }else{
+            difficult = 4;
+
+        }
+        speed = 6 * (float) difficult;
+        setP1(null);
+
+        cdt = new CountDownTimer(timeAll, timeInter) {
+            String nokori = res.getString(R.string.nokori);
+            String m = res.getString(R.string.m);
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                time.setText(nokori + Long.toString(millisUntilFinished / 20) + m);
+                if (millisUntilFinished % difficult == 0) {
+                    hisCar(himX);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                sMapStart("goal");
+                finallyView();
+            }
+        }.start();
+
+        Intent catchMain = getIntent();
+        id = catchMain.getIntExtra("main", R.id.start_add);
+        qa = new GenerateQA(id);
+
+        generateQuesAns();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.ans_l:
+                btnL.setOnClickListener(null);
+                btnR.setOnClickListener(null);
+                if (qa.getCollectLR().equals("L")) {
+                    setMyImage(docchi, atariHazure, R.drawable.atari);
+                    atari();
+                } else {
+                    setMyImage(docchi, atariHazure, R.drawable.hazure);
+                    hazure();
+                }
+                break;
+
+            case R.id.ans_r:
+                btnL.setOnClickListener(null);
+                btnR.setOnClickListener(null);
+                if (qa.getCollectLR().equals("R")) {
+                    setMyImage(docchi, atariHazure, R.drawable.atari);
+                    atari();
+                } else {
+                    setMyImage(docchi, atariHazure, R.drawable.hazure);
+                    hazure();
+                }
+                break;
+
+            case R.id.end_to_home:
+            case R.id.play_to_home:
+                //super.sMapReset()
+                sMapStop("roop");
+                cdt.cancel();
+                if (sMapStoped("roop")) {
+                    //finish();
+                    startActivity(goHome);
+                    finish();
+                } else {
+                    Toast.makeText(this, R.string.wait, Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.close2:
+                //sMapReset();
+                sMapStop("roop");
+                //moveTaskToBack(true);
+                finish();
+                break;
+        }
+
+    }
+
+    void atari() {
+        super.sMapStart("pinpon");
+        youXX = speed;
+        yourCar(youX);
+        maru += 1;
+        generateQuesAns();
+    }
+
+    void hazure() {
+        super.sMapStart("bubuu");
+        youXX = -1 * speed;
+        yourCar(youX);
+        batsu += 1;
+    }
+
+    void afterAtariHazure() {
+        setMyImage(null, atariHazure, R.drawable.docchi);
+        btnL.setOnClickListener(this);
+        btnR.setOnClickListener(this);
+    }
+
+    void generateQuesAns() {
+        qa.generateNextQA();
+        String[] lr = qa.getLR();
+
+        btnL.setText(lr[0]);
+        btnR.setText(lr[1]);
+        q.setText(qa.getQ());
+        countQ += 1;
+    }
+
+    void finallyView() {
+        quesAns.removeAllViews();
+        getLayoutInflater().inflate(R.layout.end, quesAns);
+
+        TextView rt1 = (TextView) findViewById(R.id.result_text1);
+        TextView rt2 = (TextView) findViewById(R.id.result_text2);
+        String mon = res.getString(R.string.mon);
+        String maruS = String.valueOf((int) maru);
+        String batsuS = String.valueOf((int) batsu);
+        int tenInt = 100-((int)batsu/(countQ-1));
+        String tenStr = "【 "+ tenInt + " " +res.getString(R.string.ten) + " 】";
+        rt1.setText(String.valueOf(countQ - 1) + mon);
+        rt2.setText("○" + maruS + "  " + "×" + batsuS + " " + tenStr);
+
+        ImageView ri = (ImageView) findViewById(R.id.result_image);
+        Bitmap lose = BitmapFactory.decodeResource(res, R.drawable.lose);
+        Bitmap win = BitmapFactory.decodeResource(res, R.drawable.win);
+        Bitmap even = BitmapFactory.decodeResource(res, R.drawable.even);
+        int[] youCarXY = new int[2];
+        int[] hisCarXY = new int[2];
+        you.getLocationOnScreen(youCarXY);
+        him.getLocationOnScreen(hisCarXY);
+        int youCarX = youCarXY[0];
+        int hisCarX = hisCarXY[0];
+
+        //float resultYou = maru - batsu;
+        //float resultHim = ((timeAll / 1000) / difficult);
+        //float resultFlag = resultYou - resultHim;
+        int resultFlag = youCarX - hisCarX;
+        if (resultFlag < 0) {
+            setMyImage(null, ri, R.drawable.lose);
+        } else if (resultFlag > 0) {
+            setMyImage(null, ri, R.drawable.win);
+        } else {
+            setMyImage(null, ri, R.drawable.even);
+        }
+
+        Button re = (Button) findViewById(R.id.end_to_home);
+        re.setOnClickListener(this);
+
+        Button cl = (Button) findViewById(R.id.close2);
+        cl.setOnClickListener(this);
+    }
+
+    //第一引数は、直前のBitmap#recycle用
+    void setMyImage(Bitmap b, ImageView v, int resId) {
+        if (b != null) {
+            b.recycle();
+        }
+        b = BitmapFactory.decodeResource(res, resId);
+        v.setImageDrawable(null);
+        v.setImageBitmap(null);
+        v.setImageBitmap(b);
+    }
+
+    void yourCar(float yX) {
+        youAnim = ObjectAnimator.ofFloat(you, "translationX", yX, yX + youXX);
+        youX = yX + youXX;
+        youAnim.setDuration(500);
+        youAnim.start();
+        afterAtariHazure();
+    }
+
+    void hisCar(float hX) {
+        himAnim = ObjectAnimator.ofFloat(him, "translationX", hX, hX + himXX);
+        himX = hX + himXX;
+        himAnim.setDuration(500);
+        himAnim.start();
+    }
+
+}
+
