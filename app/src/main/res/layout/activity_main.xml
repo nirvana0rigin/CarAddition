@@ -12,21 +12,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="160dp">
-<<<<<<< HEAD
         <!--道路-->
-=======
-
->>>>>>> origin/master
         <ImageView
             android:src="@drawable/road4"
             android:scaleType="fitXY"
             android:layout_width="960dp"
             android:layout_height="160dp" />
-<<<<<<< HEAD
         <!--自分と相手の車の画像 -->
-=======
-
->>>>>>> origin/master
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -43,7 +35,6 @@
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
-<<<<<<< HEAD
         </LinearLayout>
         <!--自分と相手の車のラベル -->
         <LinearLayout
@@ -55,31 +46,25 @@
                 android:textColor="#FF0000"
                 android:gravity="top"
                 android:paddingTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
+               android:layout_width="wrap_content"
+                android:layout_height="80dp"
                 android:textSize="12sp"
                 android:text="@string/you" />
 
             <TextView
                 android:textColor="#FFaaaa"
                 android:gravity="bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="90dp"
+                android:layout_height="80dp"
                 android:textSize="12sp"
                 android:text="@string/him" />
+
         </LinearLayout>
+
     </FrameLayout>
 
     <!--問題モード選択ボタン -->
-=======
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <!-- 様々な選択ボタン -->
->>>>>>> origin/master
     <LinearLayout
         android:id="@+id/start"
         android:layout_width="match_parent"
@@ -105,11 +90,7 @@
             style="@style/b_size"
             android:id="@+id/start_min2"
             android:text="@string/start4th" />
-<<<<<<< HEAD
         <!--難易度モード選択ボタン -->
-=======
-
->>>>>>> origin/master
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -142,10 +123,7 @@
         </LinearLayout>
     </LinearLayout>
 
-<<<<<<< HEAD
     <!--設定等の選択ボタン -->
-=======
->>>>>>> origin/master
     <LinearLayout
         android:id="@+id/conf"
         android:layout_width="match_parent"
@@ -161,10 +139,6 @@
             style="@style/b_size"
             android:id="@+id/close"
             android:text="@string/close" />
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     </LinearLayout>
 
 </LinearLayout>
