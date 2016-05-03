@@ -10,7 +10,11 @@ import java.util.Map;
 
 public class SoundActivity extends AppCompatActivity {
     static protected HashMap<String, MediaPlayer> sMap = new HashMap();
+<<<<<<< HEAD
 
+=======
+    ;
+>>>>>>> origin/master
     protected Context con;
     protected MediaPlayer mp;
     private static Object param1 = null;
@@ -25,21 +29,31 @@ public class SoundActivity extends AppCompatActivity {
         mp = null;
     }
 
+<<<<<<< HEAD
     //MediaPlayer単品作成
     //リスト作成時の部品メソッド
+=======
+
+>>>>>>> origin/master
     protected MediaPlayer getMP(Integer resI) {
         int res = resI.intValue();
         return MediaPlayer.create(con, res);
     }
 
+<<<<<<< HEAD
     //MediaPlayerリスト作成
+=======
+>>>>>>> origin/master
     protected void setSMap(HashMap<String, Integer> nameMap) {
         for (Map.Entry<String, Integer> e : nameMap.entrySet()) {
             sMap.put(e.getKey(), getMP(e.getValue()));
         }
     }
 
+<<<<<<< HEAD
     //特定のMediaPlayerのループ再生
+=======
+>>>>>>> origin/master
     protected void sMapStartRoop(String name) {
         if (!sMap.get(name).isPlaying()) {
             MediaPlayer mpr = sMap.get(name);
@@ -48,7 +62,10 @@ public class SoundActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     //特定のMediaPlayerの通常再生
+=======
+>>>>>>> origin/master
     protected void sMapStart(String name) {
         if (!sMap.get(name).isPlaying()) {
             MediaPlayer mps = sMap.get(name);
@@ -57,14 +74,20 @@ public class SoundActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     //特定のMediaPlayerの停止
+=======
+>>>>>>> origin/master
     protected void sMapStop(String name) {
         if (sMap.get(name).isPlaying()) {
             sMap.get(name).stop();
         }
     }
 
+<<<<<<< HEAD
     //停止しているか判定
+=======
+>>>>>>> origin/master
     protected boolean sMapStoped(String name) {
         if (!sMap.get(name).isPlaying()) {
             return true;
@@ -73,7 +96,10 @@ public class SoundActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     //MediaPlayerリストの消去
+=======
+>>>>>>> origin/master
     protected void sMapReset() {
         for (Map.Entry<String, MediaPlayer> e : sMap.entrySet()) {
             mp = e.getValue();
@@ -84,7 +110,10 @@ public class SoundActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     //共通paramのsetter&getter
+=======
+>>>>>>> origin/master
     protected void setP1(Object o) {
         this.param1 = o;
     }
@@ -93,7 +122,10 @@ public class SoundActivity extends AppCompatActivity {
         return param1;
     }
 
+<<<<<<< HEAD
     //共通paramのsetter&getter
+=======
+>>>>>>> origin/master
     protected void setP2(Object o) {
         this.param2 = o;
     }
@@ -102,7 +134,10 @@ public class SoundActivity extends AppCompatActivity {
         return param2;
     }
 
+<<<<<<< HEAD
     //共通paramのsetter&getter
+=======
+>>>>>>> origin/master
     protected void setP3(Object o) {
         this.param3 = o;
     }
@@ -111,4 +146,8 @@ public class SoundActivity extends AppCompatActivity {
         return param3;
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

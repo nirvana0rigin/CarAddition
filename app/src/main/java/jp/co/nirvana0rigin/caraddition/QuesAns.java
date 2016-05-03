@@ -26,6 +26,7 @@ import java.util.Random;
 public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     Context con;
+<<<<<<< HEAD
     Resources res;
     Intent goHome;
 
@@ -37,21 +38,45 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     ObjectAnimator himAnim;
 
     //問題と選択肢
+=======
+    Intent goHome;
+
+    int countQ = 0;
+
+    ImageView road;
+>>>>>>> origin/master
     LinearLayout quesAns;
     TextView q;
     Button btnL;
     Button btnR;
     Button btnBack;
+<<<<<<< HEAD
     int countQ = 0;
     float maru = 0;
     float batsu = 0;
     static int id = 0;
+=======
+    float maru = 0;
+    float batsu = 0;
+    static int id = 0;
+
+>>>>>>> origin/master
     ImageView atariHazure;
     Bitmap atari = null;
     Bitmap hazure = null;
     Bitmap docchi = null;
+<<<<<<< HEAD
 
     //タイマーとBGM効果音
+=======
+    Resources res;
+
+    ImageView you;
+    ObjectAnimator youAnim;
+    ImageView him;
+    ObjectAnimator himAnim;
+
+>>>>>>> origin/master
     TextView time;
     CountDownTimer cdt;
     HashMap sounds;
@@ -76,12 +101,18 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         con = getApplicationContext();
         goHome = new Intent(this, MainActivity.class);
 
+<<<<<<< HEAD
         //道路とアニメーション
+=======
+>>>>>>> origin/master
         road = (ImageView) findViewById(R.id.load);
         Animation roadPlaying = AnimationUtils.loadAnimation(this, R.anim.road_anim);
         road.startAnimation(roadPlaying);
 
+<<<<<<< HEAD
         //問題と選択肢(結果は差し替え)
+=======
+>>>>>>> origin/master
         quesAns = (LinearLayout) findViewById(R.id.play);
         time = (TextView) findViewById(R.id.time);
         q = (TextView) findViewById(R.id.q);
@@ -91,12 +122,19 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         btnR.setOnClickListener(this);
         btnBack = (Button) findViewById(R.id.play_to_home);
         btnBack.setOnClickListener(this);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         atariHazure = (ImageView) findViewById(R.id.ans_image);
         setMyImage(null, atariHazure, R.drawable.docchi);
         atari = BitmapFactory.decodeResource(res, R.drawable.atari);
         hazure = BitmapFactory.decodeResource(res, R.drawable.hazure);
 
+<<<<<<< HEAD
         //車と位置初期化
+=======
+>>>>>>> origin/master
         youX = 0;
         himX = 0;
         you = (ImageView) findViewById(R.id.you);
@@ -104,7 +142,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         yourCar(youX);
         hisCar(himX);
 
+<<<<<<< HEAD
         //BGM効果音生成
+=======
+>>>>>>> origin/master
         sounds = new HashMap() {{
             put("roop", Integer.valueOf(R.raw.roop));
             put("pinpon", Integer.valueOf(R.raw.pinpon));
@@ -114,18 +155,30 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         setSMap(sounds);
         sMapStartRoop("roop");
 
+<<<<<<< HEAD
         //難易度設定
         Integer dif = (Integer) getP1();
         if (dif != null) {
             difficult = dif.intValue();
         } else {
             difficult = 4;
+=======
+        Integer dif = (Integer) getP1();
+        if (dif != null) {
+            difficult = dif.intValue();
+        }else{
+            difficult = 4;
+
+>>>>>>> origin/master
         }
         speed = 6 * (float) difficult;
         setP1(null);
 
+<<<<<<< HEAD
         //アニメーション時間＝残距離
         //として表示し、結果画面に遷移
+=======
+>>>>>>> origin/master
         cdt = new CountDownTimer(timeAll, timeInter) {
             String nokori = res.getString(R.string.nokori);
             String m = res.getString(R.string.m);
@@ -145,6 +198,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
             }
         }.start();
 
+<<<<<<< HEAD
         //問題の生成
         Intent catchMain = getIntent();
         id = catchMain.getIntExtra("main", R.id.start_add);
@@ -154,6 +208,15 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     //各種ボタンリスナー
     //解答選択後、一時リスナー解除
+=======
+        Intent catchMain = getIntent();
+        id = catchMain.getIntExtra("main", R.id.start_add);
+        qa = new GenerateQA(id);
+
+        generateQuesAns();
+    }
+
+>>>>>>> origin/master
     @Override
     public void onClick(View v) {
 
@@ -206,7 +269,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     }
 
+<<<<<<< HEAD
     //当たり選択肢の選択時の動作
+=======
+>>>>>>> origin/master
     void atari() {
         super.sMapStart("pinpon");
         youXX = speed;
@@ -215,7 +281,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         generateQuesAns();
     }
 
+<<<<<<< HEAD
     //ハズレ選択肢の選択時の動作
+=======
+>>>>>>> origin/master
     void hazure() {
         super.sMapStart("bubuu");
         youXX = -1 * speed;
@@ -223,14 +292,20 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         batsu += 1;
     }
 
+<<<<<<< HEAD
     //選択肢選択時の共通後処理動作
+=======
+>>>>>>> origin/master
     void afterAtariHazure() {
         setMyImage(null, atariHazure, R.drawable.docchi);
         btnL.setOnClickListener(this);
         btnR.setOnClickListener(this);
     }
 
+<<<<<<< HEAD
     //問題と選択肢の都度生成
+=======
+>>>>>>> origin/master
     void generateQuesAns() {
         qa.generateNextQA();
         String[] lr = qa.getLR();
@@ -241,7 +316,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         countQ += 1;
     }
 
+<<<<<<< HEAD
     //問題選択画面を結果画面に変える
+=======
+>>>>>>> origin/master
     void finallyView() {
         quesAns.removeAllViews();
         getLayoutInflater().inflate(R.layout.end, quesAns);
@@ -251,8 +329,13 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         String mon = res.getString(R.string.mon);
         String maruS = String.valueOf((int) maru);
         String batsuS = String.valueOf((int) batsu);
+<<<<<<< HEAD
         int tenInt = 100 - ((int) batsu * (100 / (countQ - 1)));
         String tenStr = "【 " + tenInt + " " + res.getString(R.string.ten) + " 】";
+=======
+        int tenInt = 100-((int)batsu/(countQ-1));
+        String tenStr = "【 "+ tenInt + " " +res.getString(R.string.ten) + " 】";
+>>>>>>> origin/master
         rt1.setText(String.valueOf(countQ - 1) + mon);
         rt2.setText("○" + maruS + "  " + "×" + batsuS + " " + tenStr);
 
@@ -297,7 +380,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         v.setImageBitmap(b);
     }
 
+<<<<<<< HEAD
     //正解不正解時の自分車のアニメ
+=======
+>>>>>>> origin/master
     void yourCar(float yX) {
         youAnim = ObjectAnimator.ofFloat(you, "translationX", yX, yX + youXX);
         youX = yX + youXX;
@@ -306,7 +392,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         afterAtariHazure();
     }
 
+<<<<<<< HEAD
     //一定時間で進む対戦車のアニメ
+=======
+>>>>>>> origin/master
     void hisCar(float hX) {
         himAnim = ObjectAnimator.ofFloat(him, "translationX", hX, hX + himXX);
         himX = hX + himXX;
@@ -315,3 +404,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master

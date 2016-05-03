@@ -19,7 +19,10 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         //各種ボタンの設定
+=======
+>>>>>>> origin/master
         Button btnA1 = (Button) findViewById(R.id.start_add);
         btnA1.setOnClickListener(this);
         Button btnA2 = (Button) findViewById(R.id.start_add2);
@@ -39,18 +42,28 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
         easy = (Button) findViewById(R.id.easy);
         easy.setOnClickListener(this);
 
+<<<<<<< HEAD
         //インテント生成
         goQuesAns = new Intent(this, QuesAns.class);
 
         //難易度ボタンの色を皆初期化
         setSelectorColor(hard, normal, easy);
+=======
+        goQuesAns = new Intent(this, QuesAns.class);
+
+        setSelector(hard, normal, easy);
+>>>>>>> origin/master
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         goQuesAns.putExtra("main", id);
+<<<<<<< HEAD
         setSelectorColor(hard, normal, easy);
+=======
+        setSelector(hard, normal, easy);
+>>>>>>> origin/master
 
         switch (id) {
 
@@ -90,14 +103,21 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
         }
     }
 
+<<<<<<< HEAD
     //難易度ボタンの色を皆初期化
     void setSelectorColor(Button a, Button b, Button c) {
+=======
+    void setSelector(Button a, Button b, Button c) {
+>>>>>>> origin/master
         a.setBackgroundColor(Color.rgb(196, 196, 196));
         b.setBackgroundColor(Color.rgb(196, 196, 196));
         c.setBackgroundColor(Color.rgb(196, 196, 196));
     }
 
+<<<<<<< HEAD
     //難易度ボタン選択時の色変化
+=======
+>>>>>>> origin/master
     void selectButton(Button target) {
         target.setBackgroundColor(Color.rgb(255, 255, 0));
     }
