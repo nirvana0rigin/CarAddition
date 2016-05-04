@@ -5,8 +5,8 @@
         <shape android:shape="oval" android:useLevel="false">
             <solid android:color="#777777" />
             <size
-                android:height="90dp"
-                android:width="90dp" />
+                android:height="80dp"
+                android:width="80dp" />
         </shape>
     </item>
 
@@ -15,8 +15,8 @@
         <shape android:shape="oval" android:useLevel="false">
             <solid android:color="#c4c4c4" />
             <size
-                android:height="90dp"
-                android:width="90dp" />
+                android:height="80dp"
+                android:width="80dp" />
         </shape>
     </item>
 </selector>

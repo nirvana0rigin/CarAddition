@@ -8,17 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Created by user on 2016/04/18.
@@ -31,6 +28,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     //道路と車
     ImageView road;
+    ObjectAnimator roadAnim;
     ImageView you;
     ObjectAnimator youAnim;
     ImageView him;
@@ -54,12 +52,13 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     //タイマーとBGM効果音
     TextView time;
     CountDownTimer cdt;
-    HashMap sounds;
+    static HashMap sounds;
     GenerateQA qa;
 
     // 難易度は以下をいじる
     //「早く」「幾つ」正解かが勝負
     long timeAll = 30000;
+    long timeAllPlus = 1500; //ズレ修正用
     long timeInter = 1000;
     static int difficult = 4;
     static float speed = 24;
@@ -76,13 +75,8 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         con = getApplicationContext();
         goHome = new Intent(this, MainActivity.class);
 
-        //道路とアニメーション
-        road = (ImageView) findViewById(R.id.load);
-        Animation roadPlaying = AnimationUtils.loadAnimation(this, R.anim.road_anim);
-        road.startAnimation(roadPlaying);
-
-
-        //問題と選択肢(結果は差し替え)
+        //問題と選択肢のLayout
+        //結果はLayout差し替え
         quesAns = (LinearLayout) findViewById(R.id.play);
         time = (TextView) findViewById(R.id.time);
         q = (TextView) findViewById(R.id.q);
@@ -97,7 +91,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         atari = BitmapFactory.decodeResource(res, R.drawable.atari);
         hazure = BitmapFactory.decodeResource(res, R.drawable.hazure);
 
-        //車と位置初期化
+        //車と車の位置初期化
         youX = 0;
         himX = 0;
         you = (ImageView) findViewById(R.id.you);
@@ -146,6 +140,12 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
             }
         }.start();
 
+        //道路のアニメーションスタート
+        road = (ImageView) findViewById(R.id.load);
+        //Animation roadPlaying = AnimationUtils.loadAnimation(this, R.anim.road_anim);
+        //road.startAnimation(roadPlaying);
+        roadAnimStart(timeAll + timeAllPlus);
+
         //問題の生成
         Intent catchMain = getIntent();
         id = catchMain.getIntExtra("main", R.id.start_add);
@@ -185,22 +185,13 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
             case R.id.end_to_home:
             case R.id.play_to_home:
-                //super.sMapReset()
-                sMapStop("roop");
-                cdt.cancel();
-                if (sMapStoped("roop")) {
-                    //finish();
-                    startActivity(goHome);
-                    finish();
-                } else {
-                    Toast.makeText(this, R.string.wait, Toast.LENGTH_SHORT).show();
-                }
+                startActivity(goHome);
+                continueCancel();
                 break;
 
             case R.id.close2:
                 //sMapReset();
-                sMapStop("roop");
-                //moveTaskToBack(true);
+                continueCancel();
                 finish();
                 break;
         }
@@ -307,12 +298,52 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         afterAtariHazure();
     }
 
-    //一定時間で進む対戦車のアニメ
+    //一定時間で進む対戦者のアニメ
     void hisCar(float hX) {
         himAnim = ObjectAnimator.ofFloat(him, "translationX", hX, hX + himXX);
         himX = hX + himXX;
         himAnim.setDuration(500);
         himAnim.start();
+    }
+
+    //一定時間内の道路のアニメ
+    void roadAnimStart(long time) {
+        roadAnim = ObjectAnimator.ofFloat(road, "translationX", 0, -28000);
+        roadAnim.setDuration(time);
+        roadAnim.setInterpolator(new LinearInterpolator());
+        roadAnim.start();
+    }
+
+    //バックグラウンドに回った時
+    @Override
+    protected void onPause() {
+        super.onPause();
+        continueCancel();
+    }
+
+    //destroy
+    protected void onDestroy() {
+        super.onDestroy();
+        continueCancel();
+        sMapReset();
+    }
+
+    //バックボタンが押された時
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            continueCancel();
+            return true;
+        }
+        return false;
+    }
+
+    //各種disableメソッド用
+    void continueCancel() {
+        sMapStop("roop");
+        cdt.cancel();
+        roadAnim.cancel();
+        //finish();
     }
 
 }

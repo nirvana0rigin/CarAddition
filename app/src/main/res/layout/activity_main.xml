@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".MainActivity">
 
     <!--道路と車 -->
@@ -46,7 +47,7 @@
                 android:textColor="#FF0000"
                 android:gravity="top"
                 android:paddingTop="20dp"
-               android:layout_width="wrap_content"
+                android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:textSize="12sp"
                 android:text="@string/you" />
@@ -59,9 +60,7 @@
                 android:layout_height="80dp"
                 android:textSize="12sp"
                 android:text="@string/him" />
-
         </LinearLayout>
-
     </FrameLayout>
 
     <!--問題モード選択ボタン -->
@@ -92,6 +91,7 @@
             android:text="@string/start4th" />
         <!--難易度モード選択ボタン -->
         <LinearLayout
+            android:layout_margin="2dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal"
