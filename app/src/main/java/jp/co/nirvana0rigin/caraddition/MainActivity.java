@@ -59,7 +59,7 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
         goQuesAns = new Intent(this, QuesAns.class);
         goChoice = new Intent(this, Choice.class);
         goLauncher = new Intent(Intent.ACTION_MAIN);
-        goLauncher.setType(Intent.CATEGORY_HOME);
+        goLauncher.addCategory(Intent.CATEGORY_HOME);
         goLauncher.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         //難易度ボタンの色を皆初期化
