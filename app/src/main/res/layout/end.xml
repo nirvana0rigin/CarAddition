@@ -52,7 +52,7 @@
         android:id="@+id/end_to_home"
         android:text="@string/back"
         android:textSize="18sp" />
-
+    <!--
     <Button
         android:layout_margin="2dp"
         style="@style/b_color"
@@ -62,5 +62,8 @@
         android:id="@+id/close2"
         android:text="@string/close"
         android:textSize="18sp" />
+    -->
 
 </LinearLayout>
+
+

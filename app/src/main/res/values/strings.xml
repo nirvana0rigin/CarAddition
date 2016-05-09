@@ -7,7 +7,7 @@
     <string name="start2nd">たしざん　あなあき スタート</string>
     <string name="start3rd">ひきざん　ふつう　スタート</string>
     <string name="start4th">ひきざん　あなあき　スタート</string>
-    <string name="start5th">せってい　いろいろ・・(工事中)</string>
+    <string name="start5th">くるまを　えらぶ</string>
     <string name="start_toast">まだ、できてないんだ</string>
     <string name="onec_more">もういっかい</string>
     <string name="nokori">のこり</string>
@@ -23,5 +23,6 @@
     <string name="ten">てん</string>
     <string name="you">きみ</string>
     <string name="him">ライバル</string>
-
+    <string name="his_car">ライバルのくるまをえらんでね</string>
+    <string name="yours_car">きみのくるまをえらんでね</string>
 </resources>

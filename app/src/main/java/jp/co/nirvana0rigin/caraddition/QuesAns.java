@@ -28,11 +28,16 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     //道路と車
     ImageView road;
+    ImageView goal;
     ObjectAnimator roadAnim;
+    ObjectAnimator goalAnim;
+    long repeatTimes = 18;
     ImageView you;
     ObjectAnimator youAnim;
     ImageView him;
     ObjectAnimator himAnim;
+    Bitmap p0 = getP2();
+    Bitmap p1 = getP3();
 
     //問題と選択肢
     LinearLayout quesAns;
@@ -57,8 +62,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     // 難易度は以下をいじる
     //「早く」「幾つ」正解かが勝負
-    long timeAll = 30000;
-    long timeAllPlus = 1500; //ズレ修正用
+    long timeAll = 27000;
     long timeInter = 1000;
     static int difficult = 4;
     static float speed = 24;
@@ -92,10 +96,16 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         hazure = BitmapFactory.decodeResource(res, R.drawable.hazure);
 
         //車と車の位置初期化
+        you = (ImageView) findViewById(R.id.you);
+        if (p0 != null) {
+            you.setImageBitmap(p0);
+        }
+        him = (ImageView) findViewById(R.id.him);
+        if (p1 != null) {
+            him.setImageBitmap(p1);
+        }
         youX = 0;
         himX = 0;
-        you = (ImageView) findViewById(R.id.you);
-        him = (ImageView) findViewById(R.id.him);
         yourCar(youX);
         hisCar(himX);
 
@@ -142,9 +152,9 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
         //道路のアニメーションスタート
         road = (ImageView) findViewById(R.id.load);
-        //Animation roadPlaying = AnimationUtils.loadAnimation(this, R.anim.road_anim);
-        //road.startAnimation(roadPlaying);
-        roadAnimStart(timeAll + timeAllPlus);
+        goal = (ImageView) findViewById(R.id.goal);
+        repeatTimes = 14;
+        roadAnimStart(timeAll / repeatTimes);
 
         //問題の生成
         Intent catchMain = getIntent();
@@ -153,12 +163,28 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         generateQuesAns();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        changeCar(you, him);
+    }
+
+    void changeCar(ImageView you, ImageView him) {
+        if (p0 != null) {
+            you.setImageBitmap(p0);
+        }
+        if (p1 != null) {
+            him.setImageBitmap(p1);
+        }
+    }
+
     //各種ボタンリスナー
     //解答選択後、一時リスナー解除
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
+            //左の解答選択
             case R.id.ans_l:
                 btnL.setOnClickListener(null);
                 btnR.setOnClickListener(null);
@@ -170,7 +196,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
                     hazure();
                 }
                 break;
-
+            //右の解答選択
             case R.id.ans_r:
                 btnL.setOnClickListener(null);
                 btnR.setOnClickListener(null);
@@ -182,18 +208,14 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
                     hazure();
                 }
                 break;
-
+            //もどるボタン
             case R.id.end_to_home:
             case R.id.play_to_home:
                 startActivity(goHome);
                 continueCancel();
+                //finish();
                 break;
 
-            case R.id.close2:
-                //sMapReset();
-                continueCancel();
-                finish();
-                break;
         }
 
     }
@@ -210,7 +232,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     //ハズレ選択肢の選択時の動作
     void hazure() {
         super.sMapStart("bubuu");
-        youXX = -1 * speed;
+        youXX = -1 * 2 * speed;
         yourCar(youX);
         batsu += 1;
     }
@@ -241,7 +263,7 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         TextView rt1 = (TextView) findViewById(R.id.result_text1);
         TextView rt2 = (TextView) findViewById(R.id.result_text2);
         String mon = res.getString(R.string.mon);
-        String maruS = String.valueOf((int) maru);
+        String maruS = String.valueOf((int) (countQ - 1 - batsu));
         String batsuS = String.valueOf((int) batsu);
         int tenInt = 100 - ((int) batsu * (100 / (countQ - 1)));
         String tenStr = "【 " + tenInt + " " + res.getString(R.string.ten) + " 】";
@@ -274,8 +296,6 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         Button re = (Button) findViewById(R.id.end_to_home);
         re.setOnClickListener(this);
 
-        Button cl = (Button) findViewById(R.id.close2);
-        cl.setOnClickListener(this);
     }
 
     //第一引数は、直前のBitmap#recycle用
@@ -308,10 +328,20 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
 
     //一定時間内の道路のアニメ
     void roadAnimStart(long time) {
-        roadAnim = ObjectAnimator.ofFloat(road, "translationX", 0, -28000);
+
+        roadAnim = ObjectAnimator.ofFloat(road, "translationX", 0, -1400);
         roadAnim.setDuration(time);
         roadAnim.setInterpolator(new LinearInterpolator());
+        roadAnim.setRepeatCount(((int) repeatTimes) + 1);
+        roadAnim.setRepeatMode(ObjectAnimator.RESTART);
+
+        goalAnim = ObjectAnimator.ofFloat(goal, "translationX", 0, -1400);
+        goalAnim.setDuration(time);
+        goalAnim.setStartDelay(timeAll);
+        goalAnim.setInterpolator(new LinearInterpolator());
+
         roadAnim.start();
+        goalAnim.start();
     }
 
     //バックグラウンドに回った時
@@ -332,7 +362,9 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(goHome);
             continueCancel();
+            finish();
             return true;
         }
         return false;
@@ -343,7 +375,10 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         sMapStop("roop");
         cdt.cancel();
         roadAnim.cancel();
+        goalAnim.cancel();
         //finish();
     }
 
 }
+
+

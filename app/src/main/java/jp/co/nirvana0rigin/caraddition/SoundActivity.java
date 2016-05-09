@@ -1,6 +1,7 @@
 package jp.co.nirvana0rigin.caraddition;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,14 +15,13 @@ public class SoundActivity extends AppCompatActivity {
     protected Context con;
     protected MediaPlayer mp;
     private static Object param1 = null;
-    private static Object param2 = null;
-    private static Object param3 = null;
+    private static Bitmap param2 = null;
+    private static Bitmap param3 = null;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         con = getApplicationContext();
-
         mp = null;
     }
 
@@ -94,20 +94,20 @@ public class SoundActivity extends AppCompatActivity {
     }
 
     //共通paramのsetter&getter
-    protected void setP2(Object o) {
+    protected void setP2(Bitmap o) {
         this.param2 = o;
     }
 
-    protected Object getP2() {
+    protected Bitmap getP2() {
         return param2;
     }
 
     //共通paramのsetter&getter
-    protected void setP3(Object o) {
+    protected void setP3(Bitmap o) {
         this.param3 = o;
     }
 
-    protected Object getP3() {
+    protected Bitmap getP3() {
         return param3;
     }
 

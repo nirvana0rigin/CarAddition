@@ -12,9 +12,16 @@
         <!-- 道路 -->
         <ImageView
             android:id="@+id/load"
-            android:src="@drawable/road60"
+            android:src="@drawable/road5"
             android:scaleType="fitXY"
-            android:layout_width="14400dp"
+            android:layout_width="1280dp"
+            android:layout_height="160dp" />
+
+        <ImageView
+            android:id="@+id/goal"
+            android:src="@drawable/goal"
+            android:scaleType="center"
+            android:layout_width="1280dp"
             android:layout_height="160dp" />
         <!-- 自分と相手の車 -->
         <LinearLayout
@@ -26,14 +33,14 @@
             <ImageView
                 android:id="@+id/you"
                 android:layout_margin="5dp"
-                android:src="@drawable/lan1"
+                android:src="@drawable/c05"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
 
             <ImageView
                 android:id="@+id/him"
                 android:layout_margin="5dp"
-                android:src="@drawable/car2"
+                android:src="@drawable/c12"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
         </LinearLayout>

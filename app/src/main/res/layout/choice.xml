@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <!-- 「きみ」のくるま選択 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:padding="6dp"
+        android:textSize="24sp"
+        android:text="@string/yours_car" />
+
+    <GridLayout
+        android:id="@+id/gridLayout0"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:columnCount="5"
+        android:rowCount="2">
+
+        <ImageView
+            android:id="@+id/c00"
+            style="@style/choice"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/c00" />
+
+        <ImageView
+            android:id="@+id/c01"
+            style="@style/choice"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/c01" />
+
+        <ImageView
+            android:id="@+id/c02"
+            style="@style/choice"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:src="@drawable/c02" />
+
+        <ImageView
+            android:id="@+id/c03"
+            style="@style/choice"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:src="@drawable/c03" />
+
+        <ImageView
+            android:id="@+id/c04"
+            style="@style/choice"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:src="@drawable/c04" />
+
+        <ImageView
+            android:id="@+id/c05"
+            style="@style/choice"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:src="@drawable/c05" />
+
+        <ImageView
+            android:id="@+id/c06"
+            style="@style/choice"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:src="@drawable/c06" />
+
+        <ImageView
+            android:id="@+id/c07"
+            style="@style/choice"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:src="@drawable/c07" />
+
+        <ImageView
+            android:id="@+id/c08"
+            style="@style/choice"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:src="@drawable/c08" />
+
+    </GridLayout>
+
+    <!-- 「ライバル」のくるま選択 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:padding="6dp"
+        android:textSize="24sp"
+        android:text="@string/his_car" />
+
+    <GridLayout
+        android:id="@+id/gridLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:columnCount="5"
+        android:rowCount="2">
+
+        <ImageView
+            android:id="@+id/c10"
+            style="@style/choice"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/c10" />
+
+
+        <ImageView
+            android:id="@+id/c11"
+            style="@style/choice"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/c11" />
+
+        <ImageView
+            android:id="@+id/c12"
+            style="@style/choice"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:src="@drawable/c12" />
+
+        <ImageView
+            android:id="@+id/c13"
+            style="@style/choice"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:src="@drawable/c13" />
+
+        <ImageView
+            android:id="@+id/c14"
+            style="@style/choice"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:src="@drawable/c14" />
+
+        <ImageView
+            android:id="@+id/c15"
+            style="@style/choice"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:src="@drawable/c15" />
+
+        <ImageView
+            android:id="@+id/c16"
+            style="@style/choice"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:src="@drawable/c16" />
+
+        <ImageView
+            android:id="@+id/c17"
+            style="@style/choice"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:src="@drawable/c17" />
+
+        <ImageView
+            android:id="@+id/c18"
+            style="@style/choice"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:src="@drawable/c18" />
+
+    </GridLayout>
+
+    <!-- もどるボタン -->
+    <Button
+        android:id="@+id/back_choice"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:text="@string/back" />
+
+</LinearLayout>
+
+

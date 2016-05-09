@@ -15,9 +15,9 @@
         android:layout_height="160dp">
         <!--道路-->
         <ImageView
-            android:src="@drawable/road4"
+            android:src="@drawable/road5"
             android:scaleType="fitXY"
-            android:layout_width="960dp"
+            android:layout_width="1280dp"
             android:layout_height="160dp" />
         <!--自分と相手の車の画像 -->
         <LinearLayout
@@ -26,13 +26,15 @@
             android:layout_height="160dp">
 
             <ImageView
-                android:src="@drawable/lan1"
+                android:id="@+id/you"
+                android:src="@drawable/c05"
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
 
             <ImageView
-                android:src="@drawable/car2"
+                android:id="@+id/him"
+                android:src="@drawable/c12"
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp" />
@@ -134,11 +136,13 @@
             style="@style/b_size"
             android:id="@+id/start_conf"
             android:text="@string/start5th" />
-
+        <!--
         <Button
-            style="@style/b_size"
-            android:id="@+id/close"
-            android:text="@string/close" />
+             style="@style/b_size"
+             android:id="@+id/close"
+             android:text="@string/close" />
+         -->
+
     </LinearLayout>
 
 </LinearLayout>
