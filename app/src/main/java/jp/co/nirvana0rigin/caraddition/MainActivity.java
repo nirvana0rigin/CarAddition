@@ -85,12 +85,12 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
             case R.id.start_min:
             case R.id.start_min2:
                 startActivity(goQuesAns);
-                finish();
+                //finish();
                 break;
 
             case R.id.start_conf:
                 startActivity(goChoice);
-                finish();
+                //finish();
                 break;
 
             case R.id.hard:
@@ -136,7 +136,7 @@ public class MainActivity extends SoundActivity implements View.OnClickListener 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(goLauncher);
-            finish();
+            //finish();
             return true;
         }
         return false;
