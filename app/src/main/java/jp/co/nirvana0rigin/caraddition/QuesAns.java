@@ -57,7 +57,6 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
     //タイマーとBGM効果音
     TextView time;
     CountDownTimer cdt;
-    static HashMap sounds;
     GenerateQA qa;
 
     // 難易度は以下をいじる
@@ -109,15 +108,8 @@ public class QuesAns extends SoundActivity implements View.OnClickListener {
         yourCar(youX);
         hisCar(himX);
 
-        //BGM効果音生成
-        sounds = new HashMap() {{
-            put("roop", Integer.valueOf(R.raw.roop));
-            put("pinpon", Integer.valueOf(R.raw.pinpon));
-            put("bubuu", Integer.valueOf(R.raw.bubuu));
-            put("goal", Integer.valueOf(R.raw.goal));
-        }};
-        setSMap(sounds);
-        sMapStartRoop("roop");
+        //BGM再生
+        super.sMapStartRoop("roop");
 
         //難易度設定
         Integer dif = (Integer) getP1();

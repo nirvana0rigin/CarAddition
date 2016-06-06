@@ -11,9 +11,9 @@ import java.util.Map;
 
 public class SoundActivity extends AppCompatActivity {
     static protected HashMap<String, MediaPlayer> sMap = new HashMap();
-
     protected Context con;
     protected MediaPlayer mp;
+    protected static HashMap sounds;
     private static Object param1 = null;
     private static Bitmap param2 = null;
     private static Bitmap param3 = null;
@@ -23,6 +23,14 @@ public class SoundActivity extends AppCompatActivity {
         super.onCreate(state);
         con = getApplicationContext();
         mp = null;
+
+        sounds = new HashMap() {{
+            put("roop", Integer.valueOf(R.raw.roop));
+            put("pinpon", Integer.valueOf(R.raw.pinpon));
+            put("bubuu", Integer.valueOf(R.raw.bubuu));
+            put("goal", Integer.valueOf(R.raw.goal));
+        }};
+        setSMap(sounds);
     }
 
     //MediaPlayer単品作成
